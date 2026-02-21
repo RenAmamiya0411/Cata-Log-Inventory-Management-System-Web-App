@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.cell-padding {
+  @apply py-3 px-6;
+}
