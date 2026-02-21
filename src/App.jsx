@@ -1,10 +1,10 @@
 import "./App.css";
-import Dashboard from "../src/pages/Dashboard";
-import Products from "../src/pages/Products";
-import AddProduct from "../src/pages/AddProduct";
-import EditProduct from "../src/pages/EditProduct";
-import Categories from "../src/pages/Categories";
-import { BrowserRouter as Route, Router, Routes } from "react-router-dom";
+import Dashboard from "./pages/Dashboard";
+import Products from "./pages/Products";
+import AddProduct from "./pages/AddProduct";
+import EditProduct from "./pages/EditProduct";
+import Categories from "./pages/Categories";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 function App() {
   return (
