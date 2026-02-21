@@ -5,10 +5,12 @@ import AddProduct from "./pages/AddProduct";
 import EditProduct from "./pages/EditProduct";
 import Categories from "./pages/Categories";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Navbar from "./parts/Navbar";
 
 function App() {
   return (
     <Router>
+      <Navbar />
       <Routes>
         <Route path="/" element={<Dashboard />} />
         <Route path="/products" element={<Products />} />
