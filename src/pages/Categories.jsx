@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 function Categories() {
+  const [categories] = useState([]);
   const [newCategory, setNewCategory] = useState("");
 
   const handleSubmit = e => {
@@ -24,6 +25,19 @@ function Categories() {
           Add Category
         </button>
       </form>
+
+      <div>
+        {categories.length === 0 ? (
+          <p>No Categories found</p>
+        ) : (
+          categories.map(category => (
+            <div key={category._id}>
+              <span>{category.name}</span>
+              <button>Delete</button>
+            </div>
+          ))
+        )}
+      </div>
     </div>
   );
 }
