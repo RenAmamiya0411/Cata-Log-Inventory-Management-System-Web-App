@@ -66,7 +66,7 @@ function EditProduct() {
             required
           />
         </div>
-        <button className="bg-gray-800 text-white py-2 rounded hover:bg-gray-700" type="submit">
+        <button className="btn-primary" type="submit">
           Update Product
         </button>
       </form>

@@ -21,19 +21,19 @@ function Categories() {
           onChange={e => setNewCategory(e.target.value)}
           required
         />
-        <button className="bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-700" type="submit">
+        <button className="btn-primary" type="submit">
           Add Category
         </button>
       </form>
 
-      <div>
+      <div className="bg-white rounded-lg shadow p-6">
         {categories.length === 0 ? (
-          <p>No Categories found</p>
+          <p className="text-gray-500 text-center">No Categories found</p>
         ) : (
           categories.map(category => (
-            <div key={category._id}>
+            <div className="flex items-center justify-between border-b py-3" key={category._id}>
               <span>{category.name}</span>
-              <button>Delete</button>
+              <button className="btn-delete">Delete</button>
             </div>
           ))
         )}
