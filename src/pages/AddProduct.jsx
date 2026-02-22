@@ -19,28 +19,57 @@ function AddProduct() {
     navigate("/products");
   };
   return (
-    <div>
-      <h2>
-        <form onSubmit={handleSubmit}>
-          <div>
-            <label>Name</label>
-            <input type="text" name="name" value={formData.name} onChange={handleChange} required />
-          </div>
-          <div>
-            <label>Category</label>
-            <input type="text" name="category" value={formData.category} onChange={handleChange} required />
-          </div>
-          <div>
-            <label>Price</label>
-            <input type="number" name="price" value={formData.price} onChange={handleChange} required />
-          </div>
-          <div>
-            <label>Stock</label>
-            <input type="number" name="stock" value={formData.stock} onChange={handleChange} required />
-          </div>
-          <button type="submit">Add Product</button>
-        </form>
-      </h2>
+    <div className="p-6 max-w-lg mx-auto">
+      <h2 className="text-2xl font-bold mb-6">Add Product</h2>
+      <form onSubmit={handleSubmit} className="bg-white rounded-lg shadow p-6 flex flex-col gap-4">
+        <div>
+          <label className="form-labels">Name</label>
+          <input
+            className="form-inputs"
+            type="text"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div>
+          <label className="form-labels">Category</label>
+          <input
+            className="form-inputs"
+            type="text"
+            name="category"
+            value={formData.category}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div>
+          <label className="form-labels">Price</label>
+          <input
+            className="form-inputs"
+            type="number"
+            name="price"
+            value={formData.price}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div>
+          <label className="form-labels">Stock</label>
+          <input
+            className="form-inputs"
+            type="number"
+            name="stock"
+            value={formData.stock}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <button className="bg-gray-800 text-white py-2 rounded hover:bg-gray-700" type="submit">
+          Add Product
+        </button>
+      </form>
     </div>
   );
 }
