@@ -1,9 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import ProductTable from "../parts/ProductTable";
+import axios from "../api/axios";
 
 function Products() {
-  const [products] = useState([]);
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("/products")
+      .then(res => setProducts(res.data))
+      .catch(err => console.log(err));
+  }, []);
+  
   return (
     <div className="p-6">
       <div className="flex items-center justify-between mb-6">
