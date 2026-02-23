@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "../api/axios";
 
 function AddProduct() {
   const navigate = useNavigate();
@@ -10,13 +11,26 @@ function AddProduct() {
     stock: ""
   });
 
+  const [categories, setCategories] = useState([]);
+  useEffect(() => {
+    axios
+      .get("/categories")
+      .then(res => setCategories(res.data))
+      .catch(err => console.log(err));
+  }, []);
+
   const handleChange = e => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault();
-    navigate("/products");
+    try {
+      await axios.post("/products", formData);
+      navigate("/products");
+    } catch (err) {
+      console.log(err);
+    }
   };
   return (
     <div className="p-6 max-w-lg mx-auto">
@@ -35,14 +49,14 @@ function AddProduct() {
         </div>
         <div>
           <label className="form-labels">Category</label>
-          <input
-            className="form-inputs"
-            type="text"
-            name="category"
-            value={formData.category}
-            onChange={handleChange}
-            required
-          />
+          <select className="form-inputs" name="category" value={formData.category} onChange={handleChange} required>
+            <option value="">Select a Category</option>
+            {categories.map(cat => (
+              <option key={cat._id} value={cat.name}>
+                {cat.name}
+              </option>
+            ))}
+          </select>
         </div>
         <div>
           <label className="form-labels">Price</label>
