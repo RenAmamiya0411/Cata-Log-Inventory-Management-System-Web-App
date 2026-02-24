@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-function ProductTable({ products }) {
+function ProductTable({ products, onDelete }) {
   return (
     <div className="overflow-x-auto">
       <table className="min-w-full bg-white rounded-lg shadow">
@@ -35,7 +35,9 @@ function ProductTable({ products }) {
                   >
                     Edit
                   </Link>
-                  <button className="btn-delete">Delete</button>
+                  <button className="btn-delete" onClick={() => onDelete(product._id)}>
+                    Delete
+                  </button>
                 </td>
               </tr>
             ))

@@ -12,16 +12,25 @@ function Products() {
       .then(res => setProducts(res.data))
       .catch(err => console.log(err));
   }, []);
-  
+
+  const handleDelete = async id => {
+    try {
+      await axios.delete(`/products/${id}`);
+      setProducts(products.filter(product => product._id !== id));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <div className="p-6">
       <div className="flex items-center justify-between mb-6">
         <h2 className="text-2xl font-bold">Products</h2>
-        <Link to="/products/add" className="bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-700">
+        <Link to="/products/add" className="btn-primary">
           Add Product
         </Link>
       </div>
-      <ProductTable products={products} />
+      <ProductTable products={products} onDelete={handleDelete} />
     </div>
   );
 }
