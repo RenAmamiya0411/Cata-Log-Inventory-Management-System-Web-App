@@ -1,12 +1,35 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import axios from "../api/axios";
 
 function Categories() {
-  const [categories] = useState([]);
+  const [categories, setCategories] = useState([]);
   const [newCategory, setNewCategory] = useState("");
 
-  const handleSubmit = e => {
+  useEffect(() => {
+    axios
+      .get("/categories")
+      .then(res => setCategories(res.data))
+      .catch(err => console.log(err));
+  }, []);
+
+  const handleSubmit = async e => {
     e.preventDefault();
-    setNewCategory("");
+    try {
+      const res = await axios.post("/categories", { name: newCategory });
+      setCategories([...categories, res.data]);
+      setNewCategory("");
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const handleDelete = async id => {
+    try {
+      await axios.delete(`/categories/${id}`);
+      setCategories(categories.filter(cat => cat._id !== id));
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -33,7 +56,9 @@ function Categories() {
           categories.map(category => (
             <div className="flex items-center justify-between border-b py-3" key={category._id}>
               <span>{category.name}</span>
-              <button className="btn-delete">Delete</button>
+              <button className="btn-delete" onClick={() => handleDelete(category._id)}>
+                Delete
+              </button>
             </div>
           ))
         )}
