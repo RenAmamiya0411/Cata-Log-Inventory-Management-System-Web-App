@@ -23,7 +23,7 @@ function ProductTable({ products, onDelete }) {
             </tr>
           ) : (
             products.map(product => (
-              <tr key={product.id} className="border-b hover:bg-gray-50">
+              <tr key={product.id} className="border-b hover:bg-gray-50 transition duration-200">
                 <td className="cell-padding">{product.name}</td>
                 <td className="cell-padding">{product.category}</td>
                 <td className="cell-padding">${product.price}</td>
