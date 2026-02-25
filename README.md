@@ -1,3 +1,24 @@
+# CataLog- An Inventory Management System Web App
+
+An Inventory Management System Web App made to practice my skills and knowledge on MERN tech stack and TailwindCSS.
+
+## Features:
+- View all products and categories
+- Add, Edit, and Delete Products (CRUD)
+- Add and Delete Categories
+- Responsive Design (Tailwind CSS)
+
+## Built With:
+- React
+- Node.js
+- Express.js
+- MongoDB + Mongoose
+- Tailwind CSS
+- Axios
+- Deployed on Vercel (frontend) and Render (backend)
+
+## Live on Vercel: https://cata-log-app-srhfalcon.vercel.app/
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
