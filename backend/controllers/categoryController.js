@@ -1,4 +1,4 @@
-const Category = require("../models/Categories");
+import Category from "../models/Categories.js";
 
 const getCategories = async (req, res) => {
   try {
@@ -29,4 +29,4 @@ const deleteCategory = async (req, res) => {
   }
 };
 
-module.exports = { getCategories, addCategory, deleteCategory };
+export { getCategories, addCategory, deleteCategory };
