@@ -17,6 +17,10 @@ const productSchema = new mongoose.Schema(
     stock: {
       type: Number,
       required: true
+    },
+    lowStockThreshold: {
+      type: Number,
+      default: 10
     }
   },
   { timestamps: true }
