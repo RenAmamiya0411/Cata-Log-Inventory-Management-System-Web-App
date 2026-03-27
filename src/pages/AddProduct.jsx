@@ -35,8 +35,8 @@ function AddProduct() {
   };
   return (
     <div className="p-6 max-w-lg mx-auto">
-      <h2 className="text-2xl font-bold mb-6">Add Product</h2>
-      <form onSubmit={handleSubmit} className="bg-white rounded-lg shadow p-6 flex flex-col gap-4">
+      <h2 className="text-2xl font-bold mb-6 text-white">Add Product</h2>
+      <form onSubmit={handleSubmit} className="bg-gray-800 rounded-lg shadow p-6 flex flex-col gap-4">
         <div>
           <label className="form-labels">Name</label>
           <input
@@ -92,9 +92,18 @@ function AddProduct() {
             required
           />
         </div>
-        <button className="btn-primary" type="submit">
-          Add Product
-        </button>
+        <div className="flex gap-3">
+          <button className="btn-primary flex-1" type="submit">
+            Add Product
+          </button>
+          <button
+            className="flex-1 bg-gray-700 text-white px-4 py-2 rounded hover:bg-gray-600 transition duration-200"
+            type="button"
+            onClick={() => navigate("/products")}
+          >
+            Cancel
+          </button>
+        </div>
       </form>
     </div>
   );

@@ -36,7 +36,7 @@ function Dashboard() {
 
   return (
     <div className="p-6">
-      <h2 className="text-2xl font-bold mb-6">Dashboard</h2>
+      <h2 className="text-2xl font-bold mb-6 text-white">Dashboard</h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <StatCard title="Total Products" value={stats.totalProducts} />
         <StatCard title="Total Categories" value={stats.totalCategories} />
@@ -45,9 +45,9 @@ function Dashboard() {
       {lowStockProducts.length > 0 && (
         <div className="mt-8">
           <h3 className="text-lg font-semibold mb-4 text-red-600">Low Stock Alerts</h3>
-          <div className="bg-white rounded-lg shadow overflow-hidden">
+          <div className="bg-gray-800 rounded-lg shadow overflow-hidden">
             <table className="min-w-full">
-              <thead className="bg-gray-800 text-white">
+              <thead className="bg-gray-900 text-white">
                 <tr>
                   <th className="cell-padding">Name</th>
                   <th className="cell-padding text-center">Category</th>

@@ -49,14 +49,14 @@ function Products() {
   return (
     <div className="p-6">
       <div className="flex items-center justify-between mb-6">
-        <h2 className="text-2xl font-bold">Products</h2>
+        <h2 className="text-2xl font-bold text-white">Products</h2>
         <Link className="btn-primary" to="/products/add">
           Add Product
         </Link>
       </div>
       <div className="flex gap-4 mb-6">
         <input
-          className="border rounded px-3 py-2 w-full max-w-sm"
+          className="bg-gray-800 border border-gray-700 text-white placeholder-gray-400 rounded px-3 py-2 w-full max-w-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
           type="text"
           placeholder="Search products..."
           value={search}
@@ -66,7 +66,7 @@ function Products() {
           }}
         />
         <select
-          className="border rounded px-3 py-2"
+          className="bg-gray-800 border border-gray-700 text-white rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
           value={category}
           onChange={e => {
             setCategory(e.target.value);
@@ -84,17 +84,17 @@ function Products() {
       <ProductTable products={products} onDelete={handleDelete} />
       <div className="flex justify-center gap-2 mt-6">
         <button
-          className="px-3 py-1 border rounded disabled:opacity-50"
+          className="px-3 py-1 bg-gray-800 border border-gray-700 text-white rounded hover:bg-gray-700 disabled:opacity-50"
           onClick={() => setPage(p => p - 1)}
           disabled={page === 1}
         >
           Prev
         </button>
-        <span className="px-3 py-1">
+        <span className="px-3 py-1 text-gray-300">
           {page} / {pages}
         </span>
         <button
-          className="px-3 py-1 border rounded disabled:opacity-50"
+          className="px-3 py-1 bg-gray-800 border border-gray-700 text-white rounded hover:bg-gray-700 disabled:opacity-50"
           onClick={() => setPage(p => p + 1)}
           disabled={page === pages}
         >

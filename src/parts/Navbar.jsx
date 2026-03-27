@@ -14,7 +14,7 @@ function Navbar() {
     navigate("/login");
   };
   return (
-    <nav className="bg-gray-800 text-white px-6 py-4 flex items-center justify-between">
+    <nav className="bg-gray-900 text-white px-6 py-4 flex items-center justify-between">
       <h1 className="text-xl font-bold">Cata-Log</h1>
       <ul className="flex gap-6">
         <li>

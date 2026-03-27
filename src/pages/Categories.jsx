@@ -34,8 +34,8 @@ function Categories() {
 
   return (
     <div className="p-6">
-      <h2 className="text-2xl font-bold mb-6">Categories</h2>
-      <form className="bg-white rounded-lg shadow p-6 mb-6 flex gap-4" onSubmit={handleSubmit}>
+      <h2 className="text-2xl font-bold mb-6 text-white">Categories</h2>
+      <form className="bg-gray-800 rounded-lg shadow p-6 mb-6 flex gap-4" onSubmit={handleSubmit}>
         <input
           className="form-inputs"
           type="text"
@@ -49,13 +49,13 @@ function Categories() {
         </button>
       </form>
 
-      <div className="bg-white rounded-lg shadow p-6">
+      <div className="bg-gray-800 rounded-lg shadow p-6">
         {categories.length === 0 ? (
-          <p className="text-gray-500 text-center">No Categories found</p>
+          <p className="text-gray-400 text-center">No Categories found</p>
         ) : (
           categories.map(category => (
-            <div className="flex items-center justify-between border-b py-3" key={category._id}>
-              <span>{category.name}</span>
+            <div className="flex items-center justify-between border-b border-gray-700 py-3" key={category._id}>
+              <span className="text-white">{category.name}</span>
               <button className="btn-delete" onClick={() => handleDelete(category._id)}>
                 Delete
               </button>

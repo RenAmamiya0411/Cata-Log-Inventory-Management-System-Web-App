@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 function ProductTable({ products, onDelete }) {
   return (
     <div className="overflow-x-auto">
-      <table className="min-w-full bg-white rounded-lg shadow">
-        <thead className="bg-gray-800 text-white">
+      <table className="min-w-full bg-gray-800 rounded-lg shadow">
+        <thead className="bg-gray-900 text-white">
           <tr>
             <th className="cell-padding">Name</th>
             <th className="cell-padding">Category</th>
@@ -17,7 +17,7 @@ function ProductTable({ products, onDelete }) {
         <tbody>
           {products.length === 0 ? (
             <tr>
-              <td className="py-4 px-6 text-center text-gray-500" colSpan="5">
+              <td className="py-4 px-6 text-center text-gray-400" colSpan="5">
                 No Products Found
               </td>
             </tr>
@@ -26,13 +26,17 @@ function ProductTable({ products, onDelete }) {
               const isLowStock = product.stock <= product.lowStockThreshold;
               return (
                 <tr
-                  className={`border-b transition duration-200 ${isLowStock ? "bg-yellow-50 hover:bg-yellow-100" : "hover:bg-gray-50"}`}
+                  className={`border-b border-gray-700 transition duration-200 ${isLowStock ? "bg-yellow-50 hover:bg-yellow-100" : " bg-gray-800 hover:bg-gray-700"}`}
                   key={product._id}
                 >
-                  <td className="cell-padding">{product.name}</td>
-                  <td className="cell-padding text-center">{product.category}</td>
-                  <td className="cell-padding text-center">${product.price}</td>
-                  <td className="cell-padding text-center">
+                  <td className={`cell-padding ${isLowStock ? "text-gray-900" : "text-white"}`}>{product.name}</td>
+                  <td className={`cell-padding text-center ${isLowStock ? "text-gray-900" : "text-white"}`}>
+                    {product.category}
+                  </td>
+                  <td className={`cell-padding text-center ${isLowStock ? "text-gray-900" : "text-white"}`}>
+                    ${product.price}
+                  </td>
+                  <td className={`cell-padding text-center ${isLowStock ? "text-gray-900" : "text-white"}`}>
                     <span>{product.stock}</span>
                     {isLowStock && (
                       <span className="ml-2 text-xs bg-red-100 text-red-600 px-2 py-0.5 rounded-full">Low Stock</span>
@@ -40,7 +44,7 @@ function ProductTable({ products, onDelete }) {
                   </td>
                   <td className="cell-padding flex gap-2 justify-center">
                     <Link
-                      className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600"
+                      className="bg-indigo-600 text-white px-3 py-1 rounded hover:bg-indigo-700"
                       to={`/products/edit/${product._id}`}
                     >
                       Edit

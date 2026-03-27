@@ -1,4 +1,3 @@
-import "./App.css";
 import Dashboard from "./pages/Dashboard";
 import Products from "./pages/Products";
 import AddProduct from "./pages/AddProduct";
