@@ -8,7 +8,8 @@ function AddProduct() {
     name: "",
     category: "",
     price: "",
-    stock: ""
+    stock: "",
+    lowStockThreshold: 10
   });
 
   const [categories, setCategories] = useState([]);
@@ -76,6 +77,17 @@ function AddProduct() {
             type="number"
             name="stock"
             value={formData.stock}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div>
+          <label className="form-labels">Low Stock Threshold</label>
+          <input
+            className="form-inputs"
+            type="number"
+            name="lowStockThreshold"
+            value={formData.lowStockThreshold}
             onChange={handleChange}
             required
           />
