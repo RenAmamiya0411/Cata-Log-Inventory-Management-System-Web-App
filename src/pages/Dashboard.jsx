@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import StatCard from "../parts/StatCard";
 import axios from "../api/axios";
+import SkeletonCard from "../parts/SkeletonCard";
 
 function Dashboard() {
   const [stats, setStats] = useState({
@@ -9,6 +10,7 @@ function Dashboard() {
     lowStockItems: 0
   });
   const [lowStockProducts, setLowStockProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchStats = async () => {
@@ -17,6 +19,8 @@ function Dashboard() {
         setStats(data);
       } catch (error) {
         console.error(error);
+      } finally {
+        setLoading(false);
       }
     };
     const fetchLowStock = async () => {
@@ -38,9 +42,19 @@ function Dashboard() {
     <div className="p-6">
       <h2 className="text-2xl font-bold mb-6 text-white">Dashboard</h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <StatCard title="Total Products" value={stats.totalProducts} />
-        <StatCard title="Total Categories" value={stats.totalCategories} />
-        <StatCard title="Low Stock Items" value={stats.lowStockItems} />
+        {loading ? (
+          <>
+            <SkeletonCard />
+            <SkeletonCard />
+            <SkeletonCard />
+          </>
+        ) : (
+          <>
+            <StatCard title="Total Products" value={stats.totalProducts} />
+            <StatCard title="Total Categories" value={stats.totalCategories} />
+            <StatCard title="Low Stock Items" value={stats.lowStockItems} />
+          </>
+        )}
       </div>
       {lowStockProducts.length > 0 && (
         <div className="mt-8">

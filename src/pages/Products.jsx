@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import ProductTable from "../parts/ProductTable";
 import axios from "../api/axios";
 import toast from "react-hot-toast";
+import SkeletonTable from "../parts/SkeletonTable";
 
 function Products() {
   const [products, setProducts] = useState([]);
@@ -12,6 +13,7 @@ function Products() {
   const [page, setPage] = useState(1);
   const [pages, setPages] = useState(1);
   const [refresh, setRefresh] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -33,6 +35,8 @@ function Products() {
         setPages(data.pages);
       } catch (error) {
         console.error(error);
+      } finally {
+        setLoading(false);
       }
     };
     fetchProducts();
@@ -84,7 +88,7 @@ function Products() {
           ))}
         </select>
       </div>
-      <ProductTable products={products} onDelete={handleDelete} />
+      {loading ? <SkeletonTable /> : <ProductTable products={products} onDelete={handleDelete} />}
       <div className="flex justify-center gap-2 mt-6">
         <button
           className="px-3 py-1 bg-gray-800 border border-gray-700 text-white rounded hover:bg-gray-700 disabled:opacity-50"
