@@ -4,6 +4,7 @@ import ProductTable from "../parts/ProductTable";
 import axios from "../api/axios";
 import toast from "react-hot-toast";
 import SkeletonTable from "../parts/SkeletonTable";
+import ConfirmModal from "../parts/ConfirmModal";
 
 function Products() {
   const [products, setProducts] = useState([]);
@@ -14,6 +15,8 @@ function Products() {
   const [pages, setPages] = useState(1);
   const [refresh, setRefresh] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [deleteId, setDeleteId] = useState(null);
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -42,14 +45,22 @@ function Products() {
     fetchProducts();
   }, [search, category, page, refresh]);
 
-  const handleDelete = async id => {
+  const handleDelete = id => {
+    setDeleteId(id);
+    setModalOpen(true);
+  };
+
+  const confirmDelete = async () => {
     try {
-      await axios.delete(`/products/${id}`);
+      await axios.delete(`/products/${deleteId}`);
       setRefresh(prev => !prev);
       toast.success("Product deleted!");
     } catch (err) {
       toast.error("Failed to delete product");
       console.log(err);
+    } finally {
+      setModalOpen(false);
+      setDeleteId(null);
     }
   };
 
@@ -108,6 +119,15 @@ function Products() {
           Next
         </button>
       </div>
+      <ConfirmModal
+        isOpen={modalOpen}
+        message="Are you sure you want to delete this product? "
+        onConfirm={confirmDelete}
+        onCancel={() => {
+          setModalOpen(false);
+          setDeleteId(null);
+        }}
+      />
     </div>
   );
 }
