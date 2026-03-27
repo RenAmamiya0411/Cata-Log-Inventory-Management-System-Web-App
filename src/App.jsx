@@ -15,50 +15,52 @@ function App() {
     <Router>
       <Toaster position="top-right" />
       <Navbar />
-      <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route
-          path="/"
-          element={
-            <PrivateRoute>
-              <Dashboard />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/products"
-          element={
-            <PrivateRoute>
-              <Products />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/products/add"
-          element={
-            <PrivateRoute>
-              <AddProduct />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/products/edit/:id"
-          element={
-            <PrivateRoute>
-              <EditProduct />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/categories"
-          element={
-            <PrivateRoute>
-              <Categories />
-            </PrivateRoute>
-          }
-        />
-      </Routes>
+      <div className="pb-16 md:pb-0">
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route
+            path="/"
+            element={
+              <PrivateRoute>
+                <Dashboard />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/products"
+            element={
+              <PrivateRoute>
+                <Products />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/products/add"
+            element={
+              <PrivateRoute>
+                <AddProduct />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/products/edit/:id"
+            element={
+              <PrivateRoute>
+                <EditProduct />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/categories"
+            element={
+              <PrivateRoute>
+                <Categories />
+              </PrivateRoute>
+            }
+          />
+        </Routes>
+      </div>
     </Router>
   );
 }

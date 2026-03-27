@@ -42,7 +42,7 @@ function Categories() {
       toast.success("Category deleted!");
     } catch (err) {
       toast.error("Failed to delete category");
-      console.log(err);
+      console.error(err);
     } finally {
       setModalOpen(false);
       setDeleteId(null);

@@ -59,27 +59,29 @@ function Dashboard() {
       {lowStockProducts.length > 0 && (
         <div className="mt-8">
           <h3 className="text-lg font-semibold mb-4 text-red-600">Low Stock Alerts</h3>
-          <div className="bg-gray-800 rounded-lg shadow overflow-hidden">
-            <table className="min-w-full">
-              <thead className="bg-gray-900 text-white">
-                <tr>
-                  <th className="cell-padding">Name</th>
-                  <th className="cell-padding text-center">Category</th>
-                  <th className="cell-padding text-center">Stock</th>
-                  <th className="cell-padding text-center">Threshold</th>
-                </tr>
-              </thead>
-              <tbody>
-                {lowStockProducts.map(product => (
-                  <tr className="border-b bg-yellow-50" key={product._id}>
-                    <td className="cell-padding">{product.name}</td>
-                    <td className="cell-padding text-center">{product.category}</td>
-                    <td className="cell-padding text-center text-red-600 font-semibold">{product.stock}</td>
-                    <td className="cell-padding text-center">{product.lowStockThreshold}</td>
+          <div className="overflow-x-auto">
+            <div className="bg-gray-800 rounded-lg shadow overflow-x-auto">
+              <table className="min-w-full">
+                <thead className="bg-gray-900 text-white">
+                  <tr>
+                    <th className="cell-padding">Name</th>
+                    <th className="cell-padding text-center">Category</th>
+                    <th className="cell-padding text-center">Stock</th>
+                    <th className="cell-padding text-center">Threshold</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {lowStockProducts.map(product => (
+                    <tr className="border-b bg-yellow-50" key={product._id}>
+                      <td className="cell-padding">{product.name}</td>
+                      <td className="cell-padding text-center">{product.category}</td>
+                      <td className="cell-padding text-center text-red-600 font-semibold">{product.stock}</td>
+                      <td className="cell-padding text-center">{product.lowStockThreshold}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       )}

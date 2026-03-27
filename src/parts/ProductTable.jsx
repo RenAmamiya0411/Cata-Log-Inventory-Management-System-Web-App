@@ -37,10 +37,14 @@ function ProductTable({ products, onDelete }) {
                     ${product.price}
                   </td>
                   <td className={`cell-padding text-center ${isLowStock ? "text-gray-900" : "text-white"}`}>
-                    <span>{product.stock}</span>
-                    {isLowStock && (
-                      <span className="ml-2 text-xs bg-red-100 text-red-600 px-2 py-0.5 rounded-full">Low Stock</span>
-                    )}
+                    <div className="flex flex-col items-center gap-1">
+                      <span>{product.stock}</span>
+                      {isLowStock && (
+                        <span className="text-xs bg-red-100 text-red-600 px-2 py-0.5 rounded-full whitespace-nowrap">
+                          Low Stock
+                        </span>
+                      )}
+                    </div>
                   </td>
                   <td className="cell-padding flex gap-2 justify-center">
                     <Link
