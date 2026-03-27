@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 
 function AddProduct() {
   const navigate = useNavigate();
+  const [errors, setErrors] = useState({});
   const [formData, setFormData] = useState({
     name: "",
     category: "",
@@ -21,12 +22,28 @@ function AddProduct() {
       .catch(err => console.log(err));
   }, []);
 
+  const validate = () => {
+    const newErrors = {};
+    if (Number(formData.price) <= 0) newErrors.price = "Price must be a positive number";
+    if (Number(formData.stock) < 0) newErrors.stock = "Stock cannot be negative";
+    if (!Number.isInteger(Number(formData.stock))) newErrors.stock = "Stock must be a whole number";
+    if (Number(formData.lowStockThreshold) <= 0) newErrors.lowStockThreshold = "Threshold must be a positive number";
+    if (!Number.isInteger(Number(formData.lowStockThreshold)))
+      newErrors.lowStockThreshold = "Threshold must be a whole number";
+    return newErrors;
+  };
+
   const handleChange = e => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async e => {
     e.preventDefault();
+    const newErrors = validate();
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
+    }
     try {
       await axios.post("/products", formData);
       toast.success("Product added!");
@@ -72,6 +89,7 @@ function AddProduct() {
             onChange={handleChange}
             required
           />
+          {errors.price && <p className="text-red-400 text-sm mt-1">{errors.price}</p>}
         </div>
         <div>
           <label className="form-labels">Stock</label>
@@ -83,6 +101,7 @@ function AddProduct() {
             onChange={handleChange}
             required
           />
+          {errors.stock && <p className="text-red-400 text-sm mt-1">{errors.stock}</p>}
         </div>
         <div>
           <label className="form-labels">Low Stock Threshold</label>
@@ -94,6 +113,7 @@ function AddProduct() {
             onChange={handleChange}
             required
           />
+          {errors.lowStockThreshold && <p className="text-red-400 text-sm mt-1">{errors.lowStockThreshold}</p>}
         </div>
         <div className="flex gap-3">
           <button className="btn-primary flex-1" type="submit">

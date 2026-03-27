@@ -7,10 +7,24 @@ function Register() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errors, setErrors] = useState({});
   const navigate = useNavigate();
+
+  const validate = () => {
+    const newErrors = {};
+    if (!name.trim()) newErrors.name = "Name is required";
+    if (!email.trim()) newErrors.email = "Email is required";
+    if (password.length < 6) newErrors.password = "Password must be atleast 6 characters";
+    return newErrors;
+  };
 
   const handleSubmit = async e => {
     e.preventDefault();
+    const newErrors = validate();
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
+    }
     try {
       const { data } = await axios.post("/auth/register", { name, email, password });
       localStorage.setItem("token", data.token);
@@ -30,10 +44,12 @@ function Register() {
           <div className="mb-4">
             <label className="block text-sm font-medium mb-1 text-gray-300">Name</label>
             <input className="form-inputs" type="text" value={name} onChange={e => setName(e.target.value)} />
+            {errors.name && <p className="text-red-400 text-sm mt-1">{errors.name}</p>}
           </div>
           <div className="mb-4">
             <label className="block text-sm font-medium mb-1 text-gray-300">Email</label>
             <input className="form-inputs" type="email" value={email} onChange={e => setEmail(e.target.value)} />
+            {errors.email && <p className="text-red-400 text-sm mt-1">{errors.email}</p>}
           </div>
           <div className="mb-6">
             <label className="block text-sm font-medium mb-1 text-gray-300">Password</label>
@@ -43,6 +59,7 @@ function Register() {
               value={password}
               onChange={e => setPassword(e.target.value)}
             />
+            {errors.password && <p className="text-red-400 text-sm mt-1">{errors.password}</p>}
           </div>
           <button className="w-full btn-primary py-2" type="submit">
             Register
