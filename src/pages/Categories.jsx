@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "../api/axios";
+import toast from "react-hot-toast";
 
 function Categories() {
   const [categories, setCategories] = useState([]);
@@ -17,8 +18,10 @@ function Categories() {
     try {
       const res = await axios.post("/categories", { name: newCategory });
       setCategories([...categories, res.data]);
+      toast.success("Category added!")
       setNewCategory("");
     } catch (err) {
+      toast.error("Failed to add category")
       console.log(err);
     }
   };
@@ -27,7 +30,9 @@ function Categories() {
     try {
       await axios.delete(`/categories/${id}`);
       setCategories(categories.filter(cat => cat._id !== id));
+      toast.success("Category deleted!")
     } catch (err) {
+      toast.error("Failed to delete category")
       console.log(err);
     }
   };

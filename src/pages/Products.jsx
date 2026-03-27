@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import ProductTable from "../parts/ProductTable";
 import axios from "../api/axios";
+import toast from "react-hot-toast";
 
 function Products() {
   const [products, setProducts] = useState([]);
@@ -41,7 +42,9 @@ function Products() {
     try {
       await axios.delete(`/products/${id}`);
       setRefresh(prev => !prev);
+      toast.success("Product deleted!");
     } catch (err) {
+      toast.error("Failed to delete product");
       console.log(err);
     }
   };

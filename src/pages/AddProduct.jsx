@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "../api/axios";
+import toast from "react-hot-toast";
 
 function AddProduct() {
   const navigate = useNavigate();
@@ -28,8 +29,10 @@ function AddProduct() {
     e.preventDefault();
     try {
       await axios.post("/products", formData);
+      toast.success("Product added!");
       navigate("/products");
     } catch (err) {
+      toast.error("Failed to add product");
       console.log(err);
     }
   };

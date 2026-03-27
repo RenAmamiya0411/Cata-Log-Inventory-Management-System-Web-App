@@ -8,10 +8,12 @@ import Navbar from "./parts/Navbar";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import PrivateRoute from "./parts/PrivateRoute";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   return (
     <Router>
+      <Toaster position="top-right" />
       <Navbar />
       <Routes>
         <Route path="/login" element={<Login />} />

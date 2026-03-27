@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "../api/axios";
+import toast from "react-hot-toast";
 
 function EditProduct() {
   const navigate = useNavigate();
@@ -34,8 +35,10 @@ function EditProduct() {
     e.preventDefault();
     try {
       await axios.put(`/products/${id}`, formData);
+      toast.success("Product updated!");
       navigate("/products");
     } catch (err) {
+      toast.error("Failed to update product");
       console.log(err);
     }
   };
