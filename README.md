@@ -2,6 +2,8 @@
 
 A full-stack inventory management system built with the MERN stack. Features role-based authentication, real-time dashboard stats, low stock alerts, search/filter/pagination, and a clean dark UI.
 
+## Live on Vercel: https://cata-log-app-srhfalcon.vercel.app/
+
 ## Tech Stack
 
 ![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)
