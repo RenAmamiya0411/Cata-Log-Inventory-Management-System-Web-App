@@ -1,9 +1,11 @@
-const express = require("express");
+import express from "express";
+import { getCategories, addCategory, deleteCategory } from "../controllers/categoryController.js";
+import { adminOnly, protect } from "../middleware/authMiddleware.js";
+
 const router = express.Router();
-const { getCategories, addCategory, deleteCategory } = require("../controllers/categoryController.js");
 
-router.get("/", getCategories);
-router.post("/", addCategory);
-router.delete("/:id", deleteCategory);
+router.get("/", protect, getCategories);
+router.post("/", protect, adminOnly, addCategory);
+router.delete("/:id", protect, adminOnly, deleteCategory);
 
-module.exports = router;
+export default router;
