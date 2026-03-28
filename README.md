@@ -1,70 +1,123 @@
-# Getting Started with Create React App
+# Cata-Log v2
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A full-stack inventory management system built with the MERN stack. Features role-based authentication, real-time dashboard stats, low stock alerts, search/filter/pagination, and a clean dark UI.
 
-## Available Scripts
+## Tech Stack
 
-In the project directory, you can run:
+![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)
+![Express](https://img.shields.io/badge/Express-000000?style=for-the-badge&logo=express&logoColor=white)
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
+![TailwindCSS](https://img.shields.io/badge/TailwindCSS-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)
+![JWT](https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=jsonwebtokens&logoColor=white)
 
-### `npm start`
+## Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- JWT authentication with role-based access control (admin / user)
+- Dashboard with live stat cards and low stock alerts
+- Full CRUD for products and categories
+- Search, filter by category, and pagination
+- Per-product low stock threshold
+- Skeleton loading states
+- Toast notifications
+- Confirmation modal for deletions
+- Form validation
+- Responsive design with mobile bottom navbar
+- Dark UI
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Screenshots
 
-### `npm test`
+### Desktop
+![Login](screenshots/LoginPage.png)
+![Dashboard](screenshots/Dashboard-Desktop.png)
+![Products](screenshots/Products-Desktop.png)
+![AddProduct](screenshots/AddProductForm-Desktop.png)
+![Categories](screenshots/Categories-Desktop.png)
+![ConfirmModal](screenshots/ConfirmModal-Desktop.png)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Mobile
+![MobileDashboard](screenshots/Dashboard-Mobile.png)
+![MobileProducts](screenshots/Products-Mobile.png)
 
-### `npm run build`
+## Getting Started
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Prerequisites
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Node.js
+- MongoDB Atlas account
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Installation
 
-### `npm run eject`
+1. Clone the repository
+```bash
+git clone https://github.com/RenAmamiya0411/Cata-Log-Inventory-Management-System-Web-App.git
+cd Cata-Log-Inventory-Management-System-Web-App
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+2. Install frontend dependencies
+```bash
+npm install
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+3. Install backend dependencies
+```bash
+cd backend
+npm install
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+4. Set up environment variables - see [Environment Variables](#environment-variables)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+5. Start the backend
+```bash
+cd backend
+npm run dev
+```
 
-## Learn More
+6. Start the frontend
+```bash
+npm start
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Environment Variables
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Create a `.env` file in the `backend` directory with the following:
+```env
+MONGO_URI=your_mongodb_atlas_connection_string
+JWT_SECRET=your_jwt_secret
+PORT=5000
+```
 
-### Code Splitting
+## API Endpoints
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Auth
 
-### Analyzing the Bundle Size
+| Method | Endpoint | Description | Access |
+|--------|----------|-------------|--------|
+| POST | /api/auth/register | Register a new user | Public |
+| POST | /api/auth/login | Login user | Public |
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### Products
 
-### Making a Progressive Web App
+| Method | Endpoint | Description | Access |
+|--------|----------|-------------|--------|
+| GET | /api/products | Get all products | Protected |
+| GET | /api/products/:id | Get single product | Protected |
+| POST | /api/products | Add a product | Admin |
+| PUT | /api/products/:id | Update a product | Admin |
+| DELETE | /api/products/:id | Delete a product | Admin |
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### Categories
+| Method | Endpoint | Description | Access |
+|--------|----------|-------------|--------|
+| GET | /api/categories | Get all categories | Protected |
+| POST | /api/categories | Add a category | Admin |
+| DELETE | /api/categories/:id | Delete a category | Admin |
 
-### Advanced Configuration
+### Dashboard
+| Method | Endpoint | Description | Access |
+|--------|----------|-------------|--------|
+| GET | /api/dashboard/stats | Get dashboard stats | Protected |
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## License
 
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+MIT
