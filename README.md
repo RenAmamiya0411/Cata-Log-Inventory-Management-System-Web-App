@@ -4,6 +4,11 @@ A full-stack inventory management system built with the MERN stack. Features rol
 
 ## Live on Vercel: https://cata-log-app-srhfalcon.vercel.app/
 
+**Demo Account:**
+| Role | Email | Password |
+|------|-------|----------|
+| Admin | Test123@gmail.com | Test123 |
+
 ## Tech Stack
 
 ![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)
