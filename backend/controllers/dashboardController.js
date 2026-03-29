@@ -4,7 +4,7 @@ import Product from "../models/Product.js";
 export const getDashboardStats = async (req, res) => {
   try {
     const totalProducts = await Product.countDocuments();
-    const totalCategories = await Product.countDocuments();
+    const totalCategories = await Categories.countDocuments();
     const lowStockItems = await Product.countDocuments({
       $expr: { $lte: ["$stock", "$lowStockThreshold"] }
     });
